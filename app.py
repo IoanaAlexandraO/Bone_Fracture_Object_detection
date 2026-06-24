@@ -12,7 +12,7 @@ import io
 import tempfile
 import pandas as pd
 
-# ─── PAGE CONFIG ─────────────────────────────────────────────────────
+
 st.set_page_config(
     page_title="Bone Fracture Detection",
     page_icon="🦴",
@@ -20,7 +20,6 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# ─── CUSTOM CSS ──────────────────────────────────────────────────────
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
@@ -265,7 +264,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ─── CONSTANTS ───────────────────────────────────────────────────────
 CLASS_NAMES = [
     'elbow positive',
     'fingers positive',
@@ -286,10 +284,7 @@ CLASS_COLORS = {
     'wrist positive':    '#0ea5e9',
 }
 
-MODEL_HISTORY = [
-    {"name": "v2 — YOLOv8s (50 ep)",          "mAP50": 0.280, "precision": 0.310, "recall": 0.290},
-    {"name": "v3 — YOLOv8s + fixes (100 ep)",  "mAP50": 0.302, "precision": 0.373, "recall": 0.286},
-]
+
 
 CLASS_AP50_V3 = {
     'elbow positive':    0.200,
@@ -311,7 +306,7 @@ TRAIN_COUNTS = {
     'wrist positive':    74,
 }
 
-# ─── SIDEBAR ─────────────────────────────────────────────────────────
+
 with st.sidebar:
     st.markdown("## 🦴 Navigare")
     page = st.radio(
@@ -353,7 +348,7 @@ with st.sidebar:
     st.markdown("---")
     st.caption("YOLOv8 Bone Fracture Detection\nProiect CV · 7 clase")
 
-# ─── HEADER ──────────────────────────────────────────────────────────
+
 st.markdown("""
 <div class="app-header">
     <div class="header-icon">🦴</div>
@@ -364,9 +359,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ═══════════════════════════════════════════════════════════════════════
-# PAGE 1: DETECȚIE
-# ═══════════════════════════════════════════════════════════════════════
+
 if page == "🔍 Detecție Fracturi":
 
     col_upload, col_result = st.columns([1, 1], gap="large")
@@ -453,7 +446,7 @@ if page == "🔍 Detecție Fracturi":
                     </div>
                     """, unsafe_allow_html=True)
 
-                # Download result
+                
                 result_img = Image.fromarray(annotated)
                 buf = io.BytesIO()
                 result_img.save(buf, format="PNG")
@@ -503,15 +496,10 @@ if page == "🔍 Detecție Fracturi":
             """, unsafe_allow_html=True)
 
 
-# ═══════════════════════════════════════════════════════════════════════
-# PAGE 2: METRICI ANTRENARE
-# ═══════════════════════════════════════════════════════════════════════
-# ═══════════════════════════════════════════════════════════════════════
-# PAGE 2: METRICI ANTRENARE
-# ═══════════════════════════════════════════════════════════════════════
+
 elif page == "📊 Metrici Antrenare":
     
-    # Load metrics from results.csv
+    
     csv_path = "runs/results .csv"
     if os.path.exists(csv_path):
         df = pd.read_csv(csv_path)
@@ -537,13 +525,13 @@ elif page == "📊 Metrici Antrenare":
             </div>
             """, unsafe_allow_html=True)
         
-        # Training progress chart
+       
         st.markdown('<div class="section-title">📉 Evoluția Metricilor per Epocă</div>', unsafe_allow_html=True)
         
         fig, axes = plt.subplots(2, 2, figsize=(12, 8))
         fig.patch.set_facecolor('#0b1220')
         
-        # Loss chart
+     
         ax = axes[0, 0]
         ax.set_facecolor('#161b22')
         ax.plot(df['epoch'], df['train/box_loss'], label='Train Box Loss', color='#38bdf8', linewidth=2)
@@ -557,7 +545,6 @@ elif page == "📊 Metrici Antrenare":
         for spine in ax.spines.values():
             spine.set_edgecolor('#30363d')
         
-        # Precision & Recall
         ax = axes[0, 1]
         ax.set_facecolor('#161b22')
         ax.plot(df['epoch'], df['metrics/precision(B)'], label='Precision', color='#22c55e', linewidth=2, marker='o', markersize=4)
@@ -571,7 +558,7 @@ elif page == "📊 Metrici Antrenare":
         for spine in ax.spines.values():
             spine.set_edgecolor('#30363d')
         
-        # mAP scores
+       
         ax = axes[1, 0]
         ax.set_facecolor('#161b22')
         ax.plot(df['epoch'], df['metrics/mAP50(B)'], label='mAP@0.5', color='#a855f7', linewidth=2, marker='D', markersize=4)
@@ -585,7 +572,7 @@ elif page == "📊 Metrici Antrenare":
         for spine in ax.spines.values():
             spine.set_edgecolor('#30363d')
         
-        # Learning rate
+   
         ax = axes[1, 1]
         ax.set_facecolor('#161b22')
         ax.plot(df['epoch'], df['lr/pg0'], label='Learning Rate (pg0)', color='#fb7185', linewidth=2)
@@ -601,8 +588,7 @@ elif page == "📊 Metrici Antrenare":
         plt.tight_layout()
         st.pyplot(fig)
         plt.close()
-        
-        # Detailed metrics table
+     
         st.markdown('<div class="section-title">📋 Detalii Metrice pe Epocă</div>', unsafe_allow_html=True)
         
         display_cols = ['epoch', 'train/box_loss', 'val/box_loss', 'metrics/precision(B)', 
