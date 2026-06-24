@@ -61,7 +61,7 @@ st.markdown("""
     .main { background-color: #0b1220; }
     .block-container { padding: 2rem; }
 
-    /* Sidebar */
+  
     [data-testid="stSidebar"] {
         background: #111827;
         border-right: 1px solid #1f2937;
@@ -92,7 +92,6 @@ st.markdown("""
         color: #ffffff !important;
     }
 
-    /* Header */
     .app-header {
         background: linear-gradient(135deg, #111827 0%, #111827 100%);
         border: 1px solid #1f2937;
@@ -120,7 +119,7 @@ st.markdown("""
         line-height: 1;
     }
 
-    /* Metric cards */
+
     .metric-card {
         background: #111827;
         border: 1px solid #1f2937;
@@ -146,7 +145,7 @@ st.markdown("""
         font-weight: 500;
     }
 
-    /* Section titles */
+   
     .section-title {
         font-size: 1.05rem;
         font-weight: 600;
@@ -156,7 +155,7 @@ st.markdown("""
         border-bottom: 1px solid #1f2937;
     }
 
-    /* Detection result cards */
+  
     .detection-card {
         background: #111827;
         border: 1px solid rgba(56, 189, 248, 0.2);
@@ -189,7 +188,7 @@ st.markdown("""
         font-size: 0.9rem;
     }
 
-    /* Upload zone */
+  
     [data-testid="stFileUploader"] {
         background: #111827;
         border: 2px dashed #374151;
@@ -200,7 +199,7 @@ st.markdown("""
         border-color: #38bdf8;
     }
 
-    /* Tabs */
+
     .stTabs [data-baseweb="tab-list"] {
         background: #111827;
         border-radius: 8px;
@@ -219,12 +218,12 @@ st.markdown("""
         color: #ffffff !important;
     }
 
-    /* Slider */
+    
     .stSlider > div > div > div > div {
         background-color: #38bdf8;
     }
 
-    /* Info / warning badges */
+ 
     .badge {
         display: inline-block;
         padding: 0.15rem 0.55rem;
@@ -237,7 +236,6 @@ st.markdown("""
     .badge-warn { background: #78350f; color: #fdba74; }
     .badge-crit { background: #7f1d1d; color: #fecaca; }
 
-    /* Model comparison table */
     .model-row {
         background: #111827;
         border: 1px solid #1f2937;
@@ -257,7 +255,6 @@ st.markdown("""
         text-align: center;
     }
 
-    /* Scrollbar */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: #0b1220; }
     ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
